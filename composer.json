@@ -1,0 +1,28 @@
+{
+    "name": "lubski/battle-system",
+    "description": "Battle system for games",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Tomasz Lublin",
+            "email": "lubski@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+    },
+    "autoload": {
+        "psr-4": {
+            "BattleSystem\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": { "BattleSystem\\Tests\\": "tests/" }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9"
+    },
+    "scripts": {
+        "test" : "phpunit -c phpunit.xml"
+    }
+}
