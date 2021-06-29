@@ -17,7 +17,7 @@ Design Pattern/Principles:
 - Solid Principles
 
 ## Examples Usage
-See [examples](https://github.com/lubski/battle-system/examples/) start war, creating new units, weapon or extend their.
+See [examples](https://github.com/lubski/battle-system/tree/main/examples) starting war, creating new units, weapons or extend them.
 
 ## Room for Improvement
 - Make all test coverage 70%
