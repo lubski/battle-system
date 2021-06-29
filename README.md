@@ -1,11 +1,12 @@
 # battle system V0.1 
 ![Current Version](https://img.shields.io/badge/version-0.1-brightgreen) ![Php Version](https://img.shields.io/badge/PHP-7.4-yellowgreen)
-> Sample project battle system for calculate fight.  
-> You can create an army with collection of unit. Each unit can be equipped of any weapon.
-> Each equipped weapon modified unit attributes like attack, defense or health.
-> Units nad weapons can be extended, and You can simply add new types of units and weapons.
-> When battle begins system automatically calculates winner and damage taken on each round.
-> Battle will end when one of army don't have units and loses battle.
+
+Sample project battle system for calculate fight.  
+You can create an army with collection of unit. Each unit can be equipped of any weapon.
+Each equipped weapon modified unit attributes like attack, defense or health.
+Units nad weapons can be extended, and You can simply add new types of units and weapons.
+When battle begins system automatically calculates winner and damage taken on each round.
+Battle will end when one of army don't have units and loses battle.
 
 ## Project Status
 Project is: _in progress_.
