@@ -1,4 +1,5 @@
-# battle system V0.1
+# battle system V0.1 
+![Current Version](https://img.shields.io/badge/version-0.1-brightgreen) ![Php Version](https://img.shields.io/badge/PHP-7.4-yellowgreen)
 > Sample project battle system for calculate fight.  
 > You can create an army with collection of unit. Each unit can be equipped of any weapon.
 > Each equipped weapon modified unit attributes like attack, defense or health.
