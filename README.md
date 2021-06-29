@@ -138,7 +138,6 @@ $war = new War($army1, $army2, $battleSystem);
 $war->skirmish();
 echo "Result of the war:".PHP_EOL;
 
-$roundCounter = 1;
 foreach ($battleSystem->getRounds() as $round) {
     $formatter = new RoundConsoleOutput($round);
     echo $formatter;
