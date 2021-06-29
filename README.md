@@ -23,7 +23,7 @@ Design Pattern/Principles:
 ## Examples Usage
 See all [examples](https://github.com/lubski/battle-system/tree/main/examples) starting war, creating new units, weapons or extend them.
 
-###Units, Weapons
+### Units / Weapons
 - Easy creating new Units and weapons supported by system
 - Possible extend weapons and unit for better fight
 - Adding weapons to Units automatically calculates their attributes for fight 
@@ -85,7 +85,7 @@ $heavyCrusader = new HeavyCrusader("Crusader 1", [new HeavyDoubleSword(), new Li
 echo $heavyCrusader->getAttack().PHP_EOL; //260
 echo $heavyCrusader->getDefense().PHP_EOL; //250
 ```
-###Example war
+### Example war
 - Automatically war ending when army don't have units to fight
 - Fight dived by rounds
 - every round have advanced report before/after fight changes
