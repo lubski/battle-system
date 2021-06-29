@@ -5,8 +5,10 @@ namespace BattleSystem;
 
 
 use BattleSystem\Units\UnitInterface;
+use Countable;
+use Iterator;
 
-class ArmyAbstract implements \Iterator, \Countable
+class ArmyAbstract implements Iterator, Countable
 {
 
     use NameTrait;
@@ -33,7 +35,7 @@ class ArmyAbstract implements \Iterator, \Countable
         }
     }
 
-    public function &takeUnit() {
+    public function takeUnit() {
         $unit = null;
         if($this->valid()) {
             $unit = $this->units[key($this->units)];
@@ -43,7 +45,7 @@ class ArmyAbstract implements \Iterator, \Countable
         return $unit;
     }
     
-    public function haveNotDestroyedUnits() {
+    public function haveNotDestroyedUnits(): bool {
         foreach ($this->units as $unit) {
             if(!$unit->isDestroyed()) {
                 return true;
@@ -68,7 +70,7 @@ class ArmyAbstract implements \Iterator, \Countable
         return key($this->units) !== null;
     }
 
-    public function count()
+    public function count():int
     {
         return count($this->units);
     }

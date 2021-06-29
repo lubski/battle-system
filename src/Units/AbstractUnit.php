@@ -6,6 +6,7 @@ namespace BattleSystem\Units;
 
 use BattleSystem\Items\ItemsInterface;
 use BattleSystem\NameTrait;
+use InvalidArgumentException;
 
 class AbstractUnit implements UnitInterface
 {
@@ -89,7 +90,7 @@ class AbstractUnit implements UnitInterface
             return $this->attributes[$type];
         }
 
-        throw new \InvalidArgumentException("Invalid Attribute type");
+        throw new InvalidArgumentException("Invalid Attribute type");
     }
 
     /**

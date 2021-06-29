@@ -29,7 +29,7 @@ trait NameTrait
         $this->generateName();
     }
 
-    private function generateName():string {
+    private function generateName() {
         $this->name = str_replace(__NAMESPACE__."\\", '' , get_class($this));
     }
 

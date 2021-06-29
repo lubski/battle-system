@@ -88,7 +88,7 @@ echo $heavyCrusader->getDefense().PHP_EOL; //250
 ### Example war
 - Automatically war ending when army don't have units to fight
 - Fight dived by rounds
-- every round have advanced report before/after fight changes
+- Each round have advanced report before/after fight changes
 - Easy support new creating units and weapons
 ```php
 use BattleSystem\Army;
@@ -149,7 +149,8 @@ echo "WINNER IS ".$war->getWinner()->getName().PHP_EOL;
 
 ## Room for Improvement
 - Make all test coverage 70%
-- Implementing class ArmyBuilder [(Builder Pattern)](https://designpatternsphp.readthedocs.io/en/latest/Creational/Builder/README.html) for better and transparent creating army
+- Implementing creating army from ArmyBuilder [(Builder Pattern)](https://designpatternsphp.readthedocs.io/en/latest/Creational/Builder/README.html) for better and transparent creating army
+- Supporting creating army from [JSON](https://pl.wikipedia.org/wiki/JSON)
 - Create new Units and Weapons
 
 ## Contact

@@ -3,19 +3,11 @@
 
 namespace BattleSystem;
 
-
-use BattleSystem\Items\Round;
-
 class War implements WarInterface
 {
     private ArmyAbstract $army1;
     private ArmyAbstract $army2;
     private BattleInterface $battleSystem;
-
-    /**
-     * @var Round[] array
-     */
-    private array $rounds;
 
     public function __construct(ArmyAbstract $army1, ArmyAbstract $army2, BattleInterface $battleSystem)
     {
@@ -24,11 +16,11 @@ class War implements WarInterface
         $this->battleSystem = $battleSystem;
     }
 
-    public function warIsOver() {
+    public function warIsOver():bool {
         return ($this->army1->haveNotDestroyedUnits() === false || $this->army2->haveNotDestroyedUnits() === false) ? true : false;
     }
 
-    public function skirmish(\Closure $callback = null) {
+    public function skirmish() {
         $unit1 = $this->army1->takeUnit();
         $unit2 = $this->army2->takeUnit();
 
