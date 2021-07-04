@@ -1,5 +1,5 @@
-# battle system V0.1 
-![Current Version](https://img.shields.io/badge/version-0.1-brightgreen) ![Php Version](https://img.shields.io/badge/PHP-7.4-yellowgreen)
+# battle system V0.2 
+![Current Version](https://img.shields.io/badge/version-0.2-brightgreen) ![Php Version](https://img.shields.io/badge/PHP-7.4-yellowgreen)
 
 Sample project battle system for calculate fight. You can create an army with collection of unit. Each unit can be equipped of any weapon.
 Each equipped weapon modified unit attributes like attack, defense or health.
@@ -20,6 +20,10 @@ Languages:
 
 Design Pattern/Principles:
 - [Solid Principles](https://en.wikipedia.org/wiki/SOLID)
+
+##Changelog
+* Rounds can be returned as generator, iterate, return to closure or new class by __invoke
+* Random generator units for army 
 
 ## Examples Usage
 See all [examples](https://github.com/lubski/battle-system/tree/main/examples) starting war, creating new units, weapons or extend them.
@@ -91,7 +95,10 @@ echo $heavyCrusader->getDefense().PHP_EOL; //250
 - Fight dived by rounds
 - Each round have advanced report before/after fight changes
 - Easy support new creating units and weapons
+- You can see full working examples [here](https://github.com/lubski/battle-system/tree/main/examples)
 ```php
+require_once 'vendor/autoload.php';
+
 use BattleSystem\Army;
 use BattleSystem\Battle;
 use BattleSystem\Items\Bow;
@@ -100,7 +107,8 @@ use BattleSystem\Items\ImprovedShield;
 use BattleSystem\Items\ImprovedSword;
 use BattleSystem\Items\Shield;
 use BattleSystem\Items\Sword;
-use BattleSystem\RoundConsoleOutput;
+use BattleSystem\Round;
+use BattleSystem\RoundReport;
 use BattleSystem\Units\Archer;
 use BattleSystem\Units\ImprovedArcher;
 use BattleSystem\Units\ImprovedSwordsman;
@@ -117,7 +125,7 @@ $army1 = new Army("Hussars", [
     new Swordsman("Swordsman 7", [new Sword(), new Shield()]),
     new Swordsman("Swordsman 8", [new ImprovedSword(), new ImprovedShield()]),
     new ImprovedSwordsman("ImprovedSwordsman 9"),
-    new ImprovedSwordsman("ImprovedSwordsman 10", [new ImprovedSword()]),
+    new ImprovedSwordsman("ImprovedSwordsman 10", [new ImprovedSword()])
 ]);
 
 $army2 = new Army("Crusaders",[
@@ -131,21 +139,39 @@ $army2 = new Army("Crusaders",[
     new Swordsman("Swordsman 18", [new ImprovedSword(), new Shield()]),
     new Swordsman("Swordsman 19", [new ImprovedSword(), new ImprovedShield()]),
     new ImprovedSwordsman("ImprovedSwordsman 20"),
-    new ImprovedSwordsman("ImprovedSwordsman 21", [new ImprovedSword()]),
+    new ImprovedSwordsman("ImprovedSwordsman 21", [new ImprovedSword()])
 ]);
 
 $battleSystem = new Battle();
 $war = new War($army1, $army2, $battleSystem);
-$war->skirmish();
-echo "Result of the war:".PHP_EOL;
+echo "Result of the war 1:".PHP_EOL;
 
-foreach ($battleSystem->getRounds() as $round) {
-    $formatter = new RoundConsoleOutput($round);
+//Iterate rounds to closure
+$war->begin(function (Round $round) {
+    $formatter = new RoundReport($round);
+    echo $formatter;
+});
+
+// ...
+
+//All round returned as generator
+foreach($war->begin() as $round) {
+    $formatter = new RoundReport($round);
     echo $formatter;
 }
 
-echo PHP_EOL.PHP_EOL;
-echo "WINNER IS ".$war->getWinner()->getName().PHP_EOL;
+// ...
+
+//Iterate all rounds to new class by __invoke
+class RoundsHandler {
+
+    public function __invoke(Round $round)
+    {
+        echo new RoundReport($round);
+    }
+}
+
+$war->begin(new RoundsHandler());
 ```
 
 ## Room for Improvement

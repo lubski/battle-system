@@ -19,6 +19,8 @@ interface UnitInterface
 
     public function addItem(ItemsInterface $item): void;
 
+    public function recalculateAttributes(): void;
+
     public function isDestroyed(): bool;
 
     public function getName(): string;

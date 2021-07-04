@@ -5,7 +5,7 @@ namespace BattleSystem;
 
 use BattleSystem\Units\UnitInterface;
 
-class Round
+class Round implements RoundInterface
 {
 
     protected int $number;
@@ -18,9 +18,9 @@ class Round
 
     protected UnitInterface $defenderAfter;
 
-    protected int $damage;
+    protected int $damageAttacker;
 
-    protected bool $reply;
+    protected int $damageDefender;
 
     public function __construct(int $number)
     {
@@ -94,42 +94,29 @@ class Round
     /**
      * @return int
      */
-    public function getDamage(): int
-    {
-        return $this->damage;
-    }
-
-    /**
-     * @param int $damage
-     */
-    public function setDamage(int $damage): void
-    {
-        $this->damage = $damage;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isReply(): bool
-    {
-        return $this->reply;
-    }
-
-    /**
-     * @param bool $reply
-     */
-    public function setReply(bool $reply): void
-    {
-        $this->reply = $reply;
-    }
-
-    /**
-     * @return int
-     */
     public function getNumber(): int
     {
         return $this->number;
     }
 
 
+    public function getDamageAttacker(): int
+    {
+        return $this->damageAttacker;
+    }
+
+    public function setDamageAttacker(int $damage): void
+    {
+        $this->damageAttacker = $damage;
+    }
+
+    public function getDamageDefender(): int
+    {
+        return $this->damageDefender;
+    }
+
+    public function setDamageDefender(int $damage): void
+    {
+        $this->damageDefender = $damage;
+    }
 }

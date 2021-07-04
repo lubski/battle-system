@@ -1,14 +1,12 @@
 <?php
 
 
-namespace BattleSystem;
+namespace BattleSystem\Army;
 
-
+use BattleSystem\NameTrait;
 use BattleSystem\Units\UnitInterface;
-use Countable;
-use Iterator;
 
-class ArmyAbstract implements Iterator, Countable
+class AbstractArmy implements ArmyInterface
 {
 
     use NameTrait;
@@ -37,12 +35,18 @@ class ArmyAbstract implements Iterator, Countable
 
     public function takeUnit() {
         $unit = null;
-        if($this->valid()) {
-            $unit = $this->units[key($this->units)];
-            $this->next();
+        if($this->key($this->units) !== null) {
+            $unit = $this->current($this->units);
+            $this->next($this->units);
         }
-
         return $unit;
+    }
+
+    public function resupply(): ArmyInterface {
+        foreach ($this->units as $unit) {
+            $unit->recalculateAttributes();
+        }
+        return $this;
     }
     
     public function haveNotDestroyedUnits(): bool {
@@ -54,24 +58,23 @@ class ArmyAbstract implements Iterator, Countable
         return false;
     }
 
-    function rewind() {
-        return reset($this->units);
-    }
-    function current() {
-        return current($this->units);
-    }
-    function key() {
-        return key($this->units);
-    }
-    function next() {
-        return next($this->units);
-    }
-    function valid() {
-        return key($this->units) !== null;
+    public function rewind(): void {
+        $this->reset($this->units);
     }
 
-    public function count():int
-    {
-        return count($this->units);
+    public function key(array $array) {
+        return key($array);
+    }
+
+    private function current(array $array) {
+        return current($array);
+    }
+
+    private function next(array $array) {
+        next($array);
+    }
+
+    private function reset(array $array) {
+        reset($array);
     }
 }

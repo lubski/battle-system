@@ -4,7 +4,9 @@
 namespace BattleSystem;
 
 
-class Army extends ArmyAbstract
+use BattleSystem\Army\AbstractArmy;
+
+class Army extends AbstractArmy
 {
 
 }

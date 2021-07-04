@@ -10,7 +10,7 @@ class ImprovedArcher extends Archer
      * Units base attributes
      */
     protected array $baseAttributes = [
-        'attack' => 70,
+        'attack' => 80,
         'defense' => 50,
         'health' => 100
     ];

@@ -3,52 +3,43 @@
 namespace BattleSystem\Tests;
 
 use BattleSystem\Battle;
+use BattleSystem\RoundInterface;
 use BattleSystem\Units\UnitInterface;
 
 class BattleTest extends BattleTests
 {
     private Battle $battle;
+    private $attackerMock;
+    private $defenderMock;
+    private $roundMock;
 
     protected function setUp(): void
     {
         $this->battle = new Battle();
-    }
-
-    public function testGetRounds()
-    {
-
-        $this->assertIsArray($this->battle->getRounds());
+        $this->attackerMock = $this->createMock(UnitInterface::class);
+        $this->defenderMock = $this->createMock(UnitInterface::class);
+        $this->roundMock = $this->createMock(RoundInterface::class);
     }
 
     public function testAttack()
     {
-        $attacker = $this->createMock(UnitInterface::class);
-        $defender = $this->createMock(UnitInterface::class);
-
-        $attacker->expects($this->once())->method('getAttack')->willReturn(100);
-        $defender->expects($this->once())->method('getDefense')->willReturn(20);
-        $defender->expects($this->once())->method('isDestroyed');
-        $this->battle->attack($attacker, $defender);
+        $this->attackerMock->expects($this->once())->method('getAttack')->willReturn(100);
+        $this->defenderMock->expects($this->once())->method('getDefense')->willReturn(20);
+        $this->battle->attack($this->attackerMock, $this->defenderMock, $this->roundMock);
 
     }
 
     public function testCalculateAttackTakesDamage() {
 
-        $attacker = $this->createMock(UnitInterface::class);
-        $defender = $this->createMock(UnitInterface::class);
-
-        $attacker->expects($this->once())->method('getAttack')->willReturn(100);
-        $defender->expects($this->once())->method('getDefense')->willReturn(20);
-        $this->assertGreaterThan(60, $this->callMethod($this->battle, 'calculateAttack', [$attacker, $defender]));
+        $this->attackerMock->expects($this->once())->method('getAttack')->willReturn(100);
+        $this->defenderMock->expects($this->once())->method('getDefense')->willReturn(20);
+        $this->assertGreaterThan(60, $this->callMethod($this->battle, 'calculateAttack', [$this->attackerMock, $this->defenderMock]));
     }
 
     public function testCalculateAttackTakesOneDamage() {
 
-        $attacker = $this->createMock(UnitInterface::class);
-        $defender = $this->createMock(UnitInterface::class);
-
-        $attacker->expects($this->once())->method('getAttack')->willReturn(100);
-        $defender->expects($this->once())->method('getDefense')->willReturn(120);
-        $this->assertSame(1, $this->callMethod($this->battle, 'calculateAttack', [$attacker, $defender]));
+        $this->attackerMock->expects($this->once())->method('getAttack')->willReturn(100);
+        $this->defenderMock->expects($this->once())->method('getDefense')->willReturn(120);
+        $this->assertSame(1, $this->callMethod($this->battle, 'calculateAttack', [$this->attackerMock, $this->defenderMock]));
     }
 }

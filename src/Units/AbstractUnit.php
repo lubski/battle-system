@@ -62,7 +62,7 @@ class AbstractUnit implements UnitInterface
         $this->recalculateAttributes();
     }
 
-    private function recalculateAttributes() {
+    public function recalculateAttributes(): void {
         $this->attributes = $this->baseAttributes;
         foreach ($this->items as $item) {
             $item->modify($this);
